@@ -22,6 +22,6 @@
      	<button type="submit">Cargar horas</button>
      </form>
 
-     <a href="Tabla.php">Mostrarr</a>
+     <a href="Tabla.php">Mostrar</a>
 </body>
 </html> 
