@@ -33,9 +33,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             	$_SESSION['name'] = $row['Nombre'];
             	$_SESSION['id'] = $row['ID_Empleado']; 
                 $_SESSION['Proyecto'] = $row['Proyecto'];
-				$_SESSION['cargo'] = $row['Cargo']; // Guardar el cargo en la sesión
+				$_SESSION['cargo'] = $row['Cargo']; 
 
-                // Redireccionar basado en el cargo
                 if ($row['Cargo'] == 1) {
                     header("Location: home.php");
                     exit();
