@@ -2,26 +2,22 @@
 <html>
 <head>
 	<title>Ingreso</title>
-	<link rel="stylesheet" type="text/css" href="style2.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-     <form action="Cargar.php" method="post">
-     	<h2>Proyecto</h2>
+     <form action="Login.php" method="post">
+     	<h2>Inicio de sesion</h2>
      	<?php if (isset($_GET['error'])) { ?>
      		<p class="error"><?php echo $_GET['error']; ?></p>
      	<?php } ?>
-     	<label>Ingrese las horas trabajadas</label>
-     	<input type="text" name="horas" placeholder="Horas semanales trabajadas"><br>
+     	<label>Usuario</label>
+     	<input type="text" name="username" placeholder="Usuario"><br>
 
-     	<label>Ingrese el proyecto en proceso</label>
-     	<input type="text" name="proyecto" placeholder="proyecto"><br>
+     	<label>Contraseña</label>
+     	<input type="password" name="password" placeholder="password"><br>
       
-      <label>Ingrese el N°de trabajador</label>
-     	<input type="text" name="n de trabajador" placeholder="n de trabajador"><br>
-
-     	<button type="submit">Cargar horas</button>
+     	<button type="submit">Ingresar</button>
      </form>
 
-     <a href="Tabla.php">Mostrar</a>
 </body>
 </html> 
