@@ -27,10 +27,7 @@ $result = mysqli_query($conn, $sql);
             <th>|</th>
             <th>Descripción</th>
             <th>|</th>
-            <th>Horas Trabajadas</th>
-            <th>|</th>
-            <th>Día</th>
-            <th>|</th>
+           
         </tr>
         
         <?php while ($row = mysqli_fetch_assoc($result)) { ?>
@@ -41,10 +38,6 @@ $result = mysqli_query($conn, $sql);
                 <td><?php echo $row['Nombre_Proyecto']; ?></td>  
                 <td>|</td>
                 <td><?php echo $row['Descripcion']; ?></td>   
-                <td>|</td>
-                <td><?php echo $row['Horas trabajadas']; ?></td>
-                <td>|</td>
-                <td><?php echo $row['Dia']; ?></td>
                 <td>|</td>
             </tr>
         <?php } ?>
