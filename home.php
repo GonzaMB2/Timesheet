@@ -44,7 +44,7 @@ $result = mysqli_query($conn, $sql);
     </table>
  <footer>
     <form action="ingreso.php" method="post">
-    <label >Inbresar horas Trabajadas</label> <br>
+    <label >Ingresar horas Trabajadas</label> <br>
     <input type="text" name="Horas" placeholder="Ingresar horas Trabajadas"><br>
     <Button type="submit">Cargar</Button>
     </form>
