@@ -54,12 +54,14 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
                 </tbody>
             </table>
         </body>
+        <?php
+        } else {
+            echo "<script>document.getElementById('error-message').style.display = 'block';</script>";
+        }
+        ?>
         </html>
         <?php
-    } else {
-        echo "No se encontraron empleados.";
-    }
-} else {
+    }  else {
     header("Location: index.php?error=No tienes acceso a esta página");
     exit();
 }
