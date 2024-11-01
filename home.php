@@ -12,9 +12,10 @@ $result = mysqli_query($conn, $sql);
     <title>Proyectos</title>
     <link rel="stylesheet" type="text/css" href="home.css">
 </head>
-<header><h1>Bienvenido, <?php echo $_SESSION['name']; ?></h1>
+<header>
+    <h1>Bienvenido, <?php echo $_SESSION['name']; ?></h1>
 <h2>Tu ID de usuario es: <?php echo $_SESSION['id']; ?></h2>
-<h3>Proyecto asignado: <?php echo $_SESSION['Proyecto']; ?></h3>
+<h3>Proyecto asignado: <?php echo $_SESSION['proyecto']; ?></h3>
 </header>
 <body align="center">
      
@@ -47,6 +48,10 @@ $result = mysqli_query($conn, $sql);
     <label >Ingresar horas Trabajadas</label> <br>
     <input type="text" name="Horas" placeholder="Ingresar horas Trabajadas"><br>
     <Button type="submit">Cargar</Button>
+    </form>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <form action="logout.php" method="POST">
+        <button class="logout-button">Logout</button>
     </form>
  </footer>
 </body>

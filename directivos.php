@@ -10,14 +10,18 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 2) {
 <html>
 <head>
     <title>Inicio Directivos</title>
-    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="directivos.css">
 </head>
 <body>
     <h1>Bienvenido, Directivo</h1>
     <p>Seleccione una opción:</p>
-    <div>
+    
         <a href="verempleados.php"><button>Ver Empleados</button></a>
         <a href="verproyectos.php"><button>Ver Proyectos</button></a>
-    </div>
 </body>
+<footer>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <form action="logout.php" method="POST">
+        <button class="logout-button">Logout</button>
+    </form></footer>
 </html>

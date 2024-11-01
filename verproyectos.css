@@ -1,0 +1,50 @@
+body {
+    background:url(img/imagen2.jpeg) no-repeat;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    background-size: cover; 
+}
+
+h1, h2, h3 {
+    color: #adabab; 
+    text-shadow: 2px 2px 1px rgb(255, 255, 255); 
+}
+
+table {
+    background: rgba(255, 255, 255, 0.5);
+    color: #000000;
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td, tr {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #000000;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    color: #000000;
+    background: rgba(255, 255, 255, 0.5);
+}
+input[type="text"] {
+    padding: 8px;
+    margin: 10px 0;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
