@@ -76,13 +76,12 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
                         echo "<td>" . $row['proyecto'] . "</td>";
                         echo "</tr>";
 
-                        // Mostrar horas solo si hay búsqueda activa y no hay resultados
+                       
                         if (isset($_POST['search']) && !empty($_POST['search']) && !$noResults) {
                             $id_empleado = $row['ID_Empleado'];
                             $sql_horas = "SELECT * FROM horas WHERE id_empleado = '$id_empleado'";
                             $result_horas = mysqli_query($conn, $sql_horas);
 
-                            // Mostrar horas trabajadas en una tabla
                             if (mysqli_num_rows($result_horas) > 0) {
                                 echo "<tr><td colspan='6'><h3>Horas Trabajadas</h3></td></tr>";
                                 echo "<tr><th>Horas Trabajadas</th><th>Día</th></tr>";
