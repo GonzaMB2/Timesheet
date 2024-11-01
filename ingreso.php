@@ -1,20 +1,24 @@
-<?php
+<?php 
+session_start();
 include "db_conn.php";
-if (isset($_POST['horas'])) {
-    $horas = mysqli_real_escape_string($conn, $_POST['horas']);
-    
-    $sql = "INSERT INTO horas (`horas`, `Dia`) VALUES ('$horas', NOW())";
 
-    $result = mysqli_query($conn, $sql);
+if (isset($_POST['Horas'])) {
+    $horas = mysqli_real_escape_string($conn, $_POST['Horas']);
     
-    if ($result) {
-        echo "Registro insertado correctamente.";
+    // Usar comillas dobles para que $_SESSION se interprete correctamente
+    $sql = "INSERT INTO `horas`(`horastrabajadas`, `Dia`, `ID_Empleado`) VALUES ('$horas', NOW(), '{$_SESSION['id']}')";
+    
+    if (mysqli_query($conn, $sql)) {
+        // Redirigir con un mensaje de éxito
+        header("Location: home.php?success=Horas asignadas correctamente.");
+        exit();
     } else {
-        echo "Error: " . mysqli_error($conn);
-    }
-    else {
-        header("Location: home.php");
+        // Redirigir con un mensaje de error
+        header("Location: home.php?error=Error al asignar el proyecto: " . mysqli_error($conn));
         exit();
     }
+} else {
+    header("Location: index.php?error=No tienes acceso a esta página");
+    exit();
 }
 ?>
