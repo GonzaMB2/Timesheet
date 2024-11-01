@@ -48,7 +48,7 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
         </form>
         <h2>Asignar un proyecto a un empleado</h2>
         <form method="post" action="asignar_proyectos.php">
-            <input type="text" name="nombre_proyecto" placeholder="Nombre del Proyecto" required>
+            <input type="text" name="nombre_proyecto" placeholder="Nombre" required>
             <input type="text" name="empleado" placeholder="Empleado (ID o Nombre)" required>
             <button type="submit" name="asignarproyecto">Asignar proyecto</button>
         </form>

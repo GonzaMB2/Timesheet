@@ -7,14 +7,20 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
         $nombreProyecto = mysqli_real_escape_string($conn, $_POST['nombre_proyecto']);
         $empleado = mysqli_real_escape_string($conn, $_POST['empleado']);
 
-        $sql = "UPDATE empleados SET proyecto='$nombreProyecto' WHERE (Nombre LIKE '%$empleado%' OR Apellido LIKE '%$empleado%' OR ID_Empleado = '$empleado')";
+        $proyectoExistente = mysqli_query($conn, "SELECT * FROM proyectos WHERE nombre_proyecto='$nombreProyecto'");
         
-        if (mysqli_query($conn, $sql)) {
-            header("Location: verempleados.php?success=Proyecto asignado exitosamente.");
-            echo "<script>alert('El proyecto se asigno correctamente');</script>";
-            exit();
+        if (mysqli_num_rows($proyectoExistente) > 0) {
+            $sql = "UPDATE empleados SET proyecto='$nombreProyecto' WHERE (Nombre LIKE '%$empleado%' OR Apellido LIKE '%$empleado%' OR ID_Empleado = '$empleado')";
+
+            if (mysqli_query($conn, $sql) && mysqli_affected_rows($conn) > 0) {
+                header("Location: verempleados.php?success=Proyecto asignado exitosamente.");
+                exit();
+            } else {
+                header("Location: verempleados.php?error=El empleado no existe o no se pudo asignar el proyecto.");
+                exit();
+            }
         } else {
-            header("Location: verempleados.php?error=Error al asignar el proyecto: " . mysqli_error($conn));
+            header("Location: verempleados.php?error=El proyecto no existe.");
             exit();
         }
     }
