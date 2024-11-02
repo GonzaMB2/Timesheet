@@ -1,7 +1,8 @@
 <?php 
 session_start();
 include "db_conn.php";
-$sql = "SELECT * FROM proyectos";
+$sql = "SELECT * FROM proyectos WHERE Nombre_proyecto = '{$_SESSION['proyecto']}'";
+
 $result = mysqli_query($conn, $sql);
 
 ?>
