@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `Cargo` int NOT NULL,
   `password` varchar(100) NOT NULL,
   `proyecto` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID_Empleado`)
+  PRIMARY KEY (`DNI`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `horas` (
   `Dia` date NOT NULL,
   `ID_Empleado` int NOT NULL,
   PRIMARY KEY (`id_hora`),
-  KEY `Fk_idempleado` (`ID_Empleado`)
+  KEY `Fk_idempleado` (`DNI`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --

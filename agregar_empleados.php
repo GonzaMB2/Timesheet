@@ -53,7 +53,11 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 2) {
         </div>
               
      	<button type="submit" class="btn">Ingresar</button>
-     </form>
+		<br><br>
+		<button class="btn"><a href="verempleados.php">Volver a los empleados</a></button>
+	</form>
+	 
 	 </div>
+
 </body>
 </html> 

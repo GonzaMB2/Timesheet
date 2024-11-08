@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include "db_conn.php";
 
@@ -6,6 +6,7 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
     $noResults = false; 
     $where = ""; 
 
+    // Buscar proyectos
     if (isset($_POST['search']) && !empty($_POST['search'])) {
         $search = mysqli_real_escape_string($conn, $_POST['search']);
         $where = "WHERE ID_Proyecto LIKE '%$search%' OR Nombre_Proyecto LIKE '%$search%'";
@@ -16,6 +17,24 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
 
     if (mysqli_num_rows($result) == 0) {
         $noResults = true; 
+    }
+
+    if (isset($_POST['finalizar']) && !empty($_POST['finalizar'])) {
+        $nombre_proyecto = mysqli_real_escape_string($conn, $_POST['finalizar']);
+
+        $updateProyecto = "UPDATE proyectos SET Fecha_Fin = NOW() WHERE proyecto = '$nombre_proyecto'";
+
+        if (mysqli_query($conn, $updateProyecto)) {
+            $updateEmpleados = "UPDATE empleados SET proyecto = NULL WHERE proyecto = '$nombre_proyecto'";
+
+            if (mysqli_query($conn, $updateEmpleados)) {
+                $successMessage = "Proyecto '$nombre_proyecto' finalizado correctamente y empleados desasignados.";
+            } else {
+                $errorMessage = "Hubo un error al desasignar a los empleados.";
+            }
+        } else {
+            $errorMessage = "Hubo un error al finalizar el proyecto.";
+        }
     }
 
     ?>
@@ -78,15 +97,22 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
         if ($noResults) {
             echo "<script>mostrarPopup();</script>";
         }
-        if (isset($_GET['success'])) {
-            echo "<script>alert('" . $_GET['success'] . "');</script>";
+        if (isset($successMessage)) {
+            echo "<script>alert('$successMessage');</script>";
         }
-        if (isset($_GET['error'])) {
-            echo "<script>alert('" . $_GET['error'] . "');</script>";
+        if (isset($errorMessage)) {
+            echo "<script>alert('$errorMessage');</script>";
         }
         ?>  
-        <a href="directivos.php"><button>Volver a la pagina principal</button></a>
+
+        <form method="post" action="verproyectos.php">
+            <input type="text" name="finalizar" placeholder="Ingresar Nombre del proyecto a finalizar">
+            <button type="submit">Finalizar proyecto</button>
+        </form>
+
+        <a href="directivos.php"><button>Volver a la página principal</button></a>
         <a href="verempleados.php"><button>Ver empleados</button></a>
+        
     </body>
     </html>
     <?php

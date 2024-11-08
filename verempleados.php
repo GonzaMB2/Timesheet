@@ -60,7 +60,6 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Correo</th>
-                    <th>Departamento</th>
                     <th>Proyecto actual</th>
                 </tr>
             </thead>
@@ -73,13 +72,12 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
                         echo "<td>" . $row['Nombre'] . "</td>";
                         echo "<td>" . $row['Apellido'] . "</td>";
                         echo "<td>" . $row['Correo'] . "</td>";
-                        echo "<td>" . $row['Departamento'] . "</td>";
                         echo "<td>" . $row['proyecto'] . "</td>";
                         echo "</tr>";
 
                         if (isset($_POST['search']) && !empty($_POST['search']) && !$noResults) {
                             $dni_empleado = $row['DNI']; 
-                            $sql_horas = "SELECT * FROM horas WHERE dni_empleado = '$dni_empleado'"; // También cambiamos aquí
+                            $sql_horas = "SELECT * FROM horas WHERE DNI = '$dni_empleado'"; 
                             $result_horas = mysqli_query($conn, $sql_horas);
 
                             if (mysqli_num_rows($result_horas) > 0) {
