@@ -19,7 +19,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 2) {
 
 	<div class="wrapper">
      <form action="Registro.php" method="post">
-     	<h1>Inicio de sesion</h1>
+     	<h1>Registrar empleados</h1>
      	<?php if (isset($_GET['error'])) { ?>
      		<p class="error"><?php echo $_GET['error']; ?></p>
      	<?php } ?>
