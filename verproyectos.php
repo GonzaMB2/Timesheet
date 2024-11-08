@@ -5,6 +5,7 @@ include "db_conn.php";
 if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
     $noResults = false; 
     $where = ""; 
+    $alertMessage = ""; // Inicializamos la variable de mensaje de alerta
 
     // Buscar proyectos
     if (isset($_POST['search']) && !empty($_POST['search'])) {
@@ -19,22 +20,42 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
         $noResults = true; 
     }
 
+    // Finalizar proyecto por nombre
     if (isset($_POST['finalizar']) && !empty($_POST['finalizar'])) {
         $nombre_proyecto = mysqli_real_escape_string($conn, $_POST['finalizar']);
 
-        $updateProyecto = "UPDATE proyectos SET Fecha_Fin = NOW() WHERE proyecto = '$nombre_proyecto'";
+        // Buscar el proyecto por nombre
+        $searchProyecto = "SELECT ID_Proyecto FROM proyectos WHERE Nombre_Proyecto = '$nombre_proyecto'";
+        $resultSearch = mysqli_query($conn, $searchProyecto);
 
-        if (mysqli_query($conn, $updateProyecto)) {
-            $updateEmpleados = "UPDATE empleados SET proyecto = NULL WHERE proyecto = '$nombre_proyecto'";
+        if (mysqli_num_rows($resultSearch) > 0) {
+            $row = mysqli_fetch_assoc($resultSearch);
+            $id_proyecto = $row['ID_Proyecto'];
 
-            if (mysqli_query($conn, $updateEmpleados)) {
-                $successMessage = "Proyecto '$nombre_proyecto' finalizado correctamente y empleados desasignados.";
+            $updateProyecto = "UPDATE proyectos SET Fecha_Fin = NOW() WHERE Nombre_Proyecto = '$nombre_proyecto'";
+
+            if (mysqli_query($conn, $updateProyecto)) {
+                $updateEmpleados = "UPDATE empleados SET proyecto = NULL WHERE proyecto = '$nombre_proyecto'";
+
+                if (mysqli_query($conn, $updateEmpleados)) {
+                    $alertMessage = "Proyecto '$nombre_proyecto' finalizado correctamente y empleados desasignados.";
+                    echo "<script>alert('$alertMessage');</script>";
+                } else {
+                    $alertMessage = "Hubo un error al desasignar a los empleados.";
+                    echo "<script>alert('$alertMessage');</script>";
+                }
             } else {
-                $errorMessage = "Hubo un error al desasignar a los empleados.";
+                $alertMessage = "Hubo un error al finalizar el proyecto.";
+                echo "<script>alert('$alertMessage');</script>";
             }
         } else {
-            $errorMessage = "Hubo un error al finalizar el proyecto.";
+            $alertMessage = "No se encontró un proyecto con ese nombre.";
+            echo "<script>alert('$alertMessage');</script>";
         }
+    }
+
+    if ($alertMessage != "") {
+        echo "<script>alert('$alertMessage');</script>";
     }
 
     ?>
@@ -43,11 +64,6 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
     <head>
         <title>Directivos - Información de Proyectos</title>
         <link rel="stylesheet" type="text/css" href="verproyectos.css">
-        <script>
-            function mostrarPopup() {
-                alert("No se encontraron proyectos con los criterios de búsqueda.");
-            }
-        </script>
     </head>
     <body>
         <h1>Información de Proyectos</h1>
@@ -60,7 +76,7 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
         <h2>Crear Nuevo Proyecto</h2>
         <form method="post" action="crear_proyecto.php">
             <input type="text" name="nombre_proyecto" placeholder="Nombre del Proyecto" required>
-            <input type="text" name="descripcion" placeholder="Descripción" required></input>
+            <input type="text" name="descripcion" placeholder="Descripción" required>
             <button type="submit" name="crearproyecto">Crear Proyecto</button>
         </form>
 
@@ -87,26 +103,14 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td>No se encontraron proyectos.</td></tr>";
+                    echo "<tr><td colspan='5'>No se encontraron proyectos.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
 
-        <?php
-        if ($noResults) {
-            echo "<script>mostrarPopup();</script>";
-        }
-        if (isset($successMessage)) {
-            echo "<script>alert('$successMessage');</script>";
-        }
-        if (isset($errorMessage)) {
-            echo "<script>alert('$errorMessage');</script>";
-        }
-        ?>  
-
         <form method="post" action="verproyectos.php">
-            <input type="text" name="finalizar" placeholder="Ingresar Nombre del proyecto a finalizar">
+            <input type="text" name="finalizar" placeholder="Ingresar Nombre del proyecto a finalizar" required>
             <button type="submit">Finalizar proyecto</button>
         </form>
 
