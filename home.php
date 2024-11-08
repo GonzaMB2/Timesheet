@@ -15,7 +15,6 @@ $result = mysqli_query($conn, $sql);
 </head>
 <header>
     <h1>Bienvenido, <?php echo $_SESSION['name']; ?></h1>
-<h2>Tu ID de usuario es: <?php echo $_SESSION['id']; ?></h2>
 <h3>Proyecto asignado: <?php echo $_SESSION['proyecto']; ?></h3>
 </header>
 <body align="center">

@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include "db_conn.php";
+
 if (isset($_GET['success'])) {
     echo "<script>alert('" . $_GET['success'] . "');</script>";
 }
@@ -13,7 +14,7 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
 
     if (isset($_POST['search']) && !empty($_POST['search'])) {
         $search = mysqli_real_escape_string($conn, $_POST['search']);
-        $where .= " AND (Nombre LIKE '%$search%' OR Apellido LIKE '%$search%' OR ID_Empleado = '$search')";
+        $where .= " AND (Nombre LIKE '%$search%' OR Apellido LIKE '%$search%' OR DNI = '$search')";
 
         $sql = "SELECT * FROM empleados WHERE $where";
         $result = mysqli_query($conn, $sql);
@@ -43,19 +44,19 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
     <body>
         <h1>Información de Empleados</h1>
         <form method="post" action="verempleados.php">
-            <input type="text" name="search" placeholder="Buscar por ID, Nombre o Apellido">
+            <input type="text" name="search" placeholder="Buscar por DNI, Nombre o Apellido">
             <button type="submit">Buscar</button>
         </form>
         <h2>Asignar un proyecto a un empleado</h2>
         <form method="post" action="asignar_proyectos.php">
             <input type="text" name="nombre_proyecto" placeholder="Nombre" required>
-            <input type="text" name="empleado" placeholder="Empleado (ID o Nombre)" required>
+            <input type="text" name="empleado" placeholder="Empleado (DNI o Nombre)" required>
             <button type="submit" name="asignarproyecto">Asignar proyecto</button>
         </form>
         <table class="default">
             <thead>
                 <tr>
-                    <th>ID del Empleado</th>
+                    <th>DNI del Empleado</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Correo</th>
@@ -68,7 +69,7 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>";
-                        echo "<td>" . $row['ID_Empleado'] . "</td>";
+                        echo "<td>" . $row['DNI'] . "</td>";
                         echo "<td>" . $row['Nombre'] . "</td>";
                         echo "<td>" . $row['Apellido'] . "</td>";
                         echo "<td>" . $row['Correo'] . "</td>";
@@ -76,10 +77,9 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
                         echo "<td>" . $row['proyecto'] . "</td>";
                         echo "</tr>";
 
-                       
                         if (isset($_POST['search']) && !empty($_POST['search']) && !$noResults) {
-                            $id_empleado = $row['ID_Empleado'];
-                            $sql_horas = "SELECT * FROM horas WHERE id_empleado = '$id_empleado'";
+                            $dni_empleado = $row['DNI']; 
+                            $sql_horas = "SELECT * FROM horas WHERE dni_empleado = '$dni_empleado'"; // También cambiamos aquí
                             $result_horas = mysqli_query($conn, $sql_horas);
 
                             if (mysqli_num_rows($result_horas) > 0) {
@@ -109,6 +109,7 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
             echo "<script>mostrarPopup();</script>";
         }
         ?>
+        <a href="agregar_empleados.php"><button>Agregar empleados</button></a>
         <a href="directivos.php"><button>Volver a la página principal</button></a>
         <a href="verproyectos.php"><button>Ver Proyectos</button></a>
     </body>

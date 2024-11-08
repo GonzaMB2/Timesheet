@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `empleados`;
 CREATE TABLE IF NOT EXISTS `empleados` (
-  `ID_Empleado` int NOT NULL AUTO_INCREMENT,
+  `DNI` int(10) NOT NULL,
   `Nombre` varchar(100) DEFAULT NULL,
   `Apellido` varchar(100) DEFAULT NULL,
   `Correo` varchar(100) DEFAULT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `password` varchar(100) NOT NULL,
   `proyecto` varchar(100) NOT NULL,
   PRIMARY KEY (`ID_Empleado`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `empleados`
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `horas` (
   `ID_Empleado` int NOT NULL,
   PRIMARY KEY (`id_hora`),
   KEY `Fk_idempleado` (`ID_Empleado`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `horas`
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `proyectos` (
   `Fecha_Inicio` date DEFAULT NULL,
   `Fecha_Fin` date DEFAULT NULL,
   PRIMARY KEY (`ID_Proyecto`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `proyectos`
