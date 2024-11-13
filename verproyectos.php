@@ -5,9 +5,7 @@ include "db_conn.php";
 if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
     $noResults = false; 
     $where = ""; 
-    $alertMessage = ""; // Inicializamos la variable de mensaje de alerta
-
-    // Buscar proyectos
+    $alertMessage = "";
     if (isset($_POST['search']) && !empty($_POST['search'])) {
         $search = mysqli_real_escape_string($conn, $_POST['search']);
         $where = "WHERE ID_Proyecto LIKE '%$search%' OR Nombre_Proyecto LIKE '%$search%'";
@@ -20,11 +18,9 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
         $noResults = true; 
     }
 
-    // Finalizar proyecto por nombre
     if (isset($_POST['finalizar']) && !empty($_POST['finalizar'])) {
         $nombre_proyecto = mysqli_real_escape_string($conn, $_POST['finalizar']);
 
-        // Buscar el proyecto por nombre
         $searchProyecto = "SELECT ID_Proyecto FROM proyectos WHERE Nombre_Proyecto = '$nombre_proyecto'";
         $resultSearch = mysqli_query($conn, $searchProyecto);
 
