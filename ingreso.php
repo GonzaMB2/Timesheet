@@ -9,7 +9,7 @@ if (isset($_POST['Horas'])) {
     
     $fechaHoy = date('Y-m-d');
 
-    $sql_check = "SELECT * FROM `horas` WHERE `DNI` = '$dni' AND `Proyecto` = '$proyecto' AND DATE(`Dia`) = '$fechaHoy'";
+    $sql_check = "SELECT * FROM `horas` WHERE `DNI` = '$dni' AND DATE(`Dia`) = '$fechaHoy'";
 
     $result = mysqli_query($conn, $sql_check);
 
@@ -20,8 +20,8 @@ if (isset($_POST['Horas'])) {
               </script>";
         exit();
     } else {
-        $sql = "INSERT INTO `horas` (`horastrabajadas`, `Dia`, `DNI`, `Proyecto`) 
-                VALUES ('$horas', NOW(), '$dni', '$proyecto')";
+        $sql = "INSERT INTO `horas` (`horastrabajadas`, `Dia`, `DNI`) 
+                VALUES ('$horas', NOW(), '$dni')";
 
         if (mysqli_query($conn, $sql)) {
             echo "<script type='text/javascript'>

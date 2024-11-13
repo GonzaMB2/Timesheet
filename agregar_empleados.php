@@ -48,7 +48,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 2) {
 		</div>
 
         <div class="input-box">
-        <input type="text" name="cargo" placeholder="Cargo" required pattern="[1-2]" title="Por favor, ingresa 1 o 2">
+        <input type="text" name="cargo" placeholder="Cargo" required pattern="[1-2]" title="Por favor, ingresa 1 o 2 (1 es para empleados y 2 para directivos)">
         <i class='bx bxs-user'></i>
         </div>
               
