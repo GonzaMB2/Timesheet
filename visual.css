@@ -1,0 +1,77 @@
+body {
+    background: url(img/office.jpg) no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2 {
+    color: #333; 
+    font-weight: normal;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semi-transparente */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.5); /* Bordes grises suaves */
+}
+
+th {
+    background-color: rgba(240, 240, 240, 0.9); /* Gris muy claro */
+    color: #333; /* Texto en gris oscuro */
+}
+
+tr:nth-child(even) {
+    background-color: rgba(245, 245, 245, 0.8); /* Fondo alternado gris claro */
+}
+
+input[type="text"] {
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco suave */
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semi-transparente */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro más oscuro en hover */
+}
+
+a button {
+    width: 150px;
+    margin: 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* Botón de enlaces con fondo negro semi-transparente */
+}
+
+a button:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro más oscuro en hover */
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}

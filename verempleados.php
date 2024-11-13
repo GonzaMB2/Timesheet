@@ -34,7 +34,7 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
     <html>
     <head>
         <title>Directivos - Información de Empleados</title>
-        <link rel="stylesheet" type="text/css" href="verempleados.css">
+        <link rel="stylesheet" type="text/css" href="visual.css">
         <script>
             function mostrarPopup() {
                 alert("No se encontraron empleados con los criterios de búsqueda.");

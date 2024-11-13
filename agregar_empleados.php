@@ -54,7 +54,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 2) {
               
      	<button type="submit" class="btn">Ingresar</button>
 		<br><br>
-		<button class="btn"><a href="verempleados.php">Volver a los empleados</a></button>
+		<a class="btn" href="verempleados.php">Volver a los empleados</a>
 	</form>
 	 
 	 </div>

@@ -11,7 +11,7 @@ $result = mysqli_query($conn, $sql);
 <html>
 <head>
     <title>Proyectos</title>
-    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="visual.css">
 </head>
 <header>
     <h1>Bienvenido, <?php echo $_SESSION['name']; ?></h1>

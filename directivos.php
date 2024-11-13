@@ -5,23 +5,31 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] != 2) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Directivos</title>
-    <link rel="stylesheet" type="text/css" href="directivos.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bienvenido, Directivo</h1>
-    <p>Seleccione una opción:</p>
-    
-        <a href="verempleados.php"><button>Ver Empleados</button></a>
-        <a href="verproyectos.php"><button>Ver Proyectos</button></a>
+    <div class="wrapper">
+        <h1>Bienvenido, Directivo</h1>
+        <p>Seleccione una opción:</p>
+        
+        <div class="input-box">
+            <a href="verempleados.php"><button class="btn">Ver Empleados</button></a>
+            <br><br>
+            <a href="verproyectos.php"><button class="btn">Ver Proyectos</button></a>
+            <i class='bx bxs-lock-alt'></i>
+        </div>
+        <br>    
+        <div class="input-box">
+        <form action="logout.php" method="POST">
+            <button class="btn" >Logout</button>
+        </form>
+        </div>
+    </div>
 </body>
-<footer>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <form action="logout.php" method="POST">
-        <button class="logout-button">Logout</button>
-    </form></footer>
 </html>

@@ -63,7 +63,7 @@ if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 2) {
     <html>
     <head>
         <title>Directivos - Información de Proyectos</title>
-        <link rel="stylesheet" type="text/css" href="verproyectos.css">
+        <link rel="stylesheet" type="text/css" href="visual.css">
     </head>
     <body>
         <h1>Información de Proyectos</h1>
