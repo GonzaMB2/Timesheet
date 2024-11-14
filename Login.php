@@ -29,7 +29,25 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             $row = mysqli_fetch_assoc($result);
 
             if ($row['Nombre'] === $uname && $row['password'] === $pass) {
+                $_SESSION['user_name'] = $row['Nombre']; 
                 $_SESSION['name'] = $row['Nombre'];
+                $_SESSION['DNI'] = $row['DNI']; 
+                $_SESSION['proyecto'] = $row['proyecto'];
+                $_SESSION['cargo'] = $row['Cargo']; 
+
+				if ($row['password'] == strval($row['DNI'])) {
+                    header("Location: cambiar.php");
+                    exit();
+                } else if ($row['Cargo'] == 2) {
+                    header("Location: directivos.php");
+                    exit();
+                } else if ($row['Cargo'] == 1) {
+                    header("Location: ./html/");
+                    exit();
+                } else {
+                    header("Location: index.php?error=Nombre de usuario o contraseña incorrectos");
+                    exit();
+                }
             } else {
                 header("Location: index.php?error=Nombre de usuario o contraseña incorrectos");
                 exit();
