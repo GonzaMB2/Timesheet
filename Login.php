@@ -42,7 +42,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                     header("Location: directivos.php");
                     exit();
                 } else if ($row['Cargo'] == 1) {
-                    header("Location: ./html/");
+                    header("Location: home.php");
                     exit();
                 } else {
                     header("Location: index.php?error=Nombre de usuario o contraseña incorrectos");
